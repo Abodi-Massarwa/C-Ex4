@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <unistd.h>
 #define CHARS_SIZE 26
 #define LINE_SIZE 256
 #define FALSE 0
@@ -212,8 +213,8 @@ boolean get_line(Node* root) {
     char line[LINE_SIZE];//for the whole line
     FILE *fp;
     char* filename="/input.txt";
-    char pathname[26];
-    getcwd(pathname,sizeof(pathname)/sizeof(pathname[0]));
+    char pathname[LINE_SIZE];
+    getcwd(pathname,LINE_SIZE);
     strcat(pathname, filename);
     size_t i, j;
     size_t iterate;
@@ -319,3 +320,4 @@ void print_words_reverse(Node* root,size_t size1){
         printf("\n");
     }
 }
+
