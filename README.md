@@ -23,7 +23,7 @@ ___
   <!--Images-->
   ![Trie](https://media.geeksforgeeks.org/wp-content/cdn-uploads/Trie.png)
 ___
-### illustration
+### Illustration
 1.
 ```bash
 ./frequency
@@ -61,7 +61,7 @@ age  2
 ubuntu:~/environment (master) $ ...
 ```
 ---
-_Contributed by:_
+**Contributed by:**
 * Abed El Kareem Massarweh
 ---
 
