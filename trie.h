@@ -2,8 +2,8 @@
 // Created by Abodi Msarwi on 15/01/2020.
 //
 
-// #ifndef UNTITLED_HEADER_H
-// #define UNTITLED_HEADER_H
+#ifndef UNTITLED_HEADER_H
+#define UNTITLED_HEADER_H
 #define CHARS_SIZE 26
 #define LINE_SIZE 256
 #define FALSE 0
@@ -49,4 +49,4 @@ void free_all(Node* curs);
 int comparator (const void** str1, const void** str2);
 void print_words(Node* root,size_t size1);
 void print_words_reverse(Node* root,size_t size1);
-//#endif //UNTITLED_HEADER_H
+#endif //UNTITLED_HEADER_H

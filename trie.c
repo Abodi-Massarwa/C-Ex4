@@ -6,7 +6,7 @@
 #define FALSE 0
 #define TRUE 1
 typedef char* String;
-//#include "globalvars.h"
+
 typedef int int_64;
 typedef int_64 boolean;
 /**our global String array (array of pointers to chars)
@@ -188,20 +188,34 @@ int count_chars(String word){
  */
 boolean get_line(Node* root) {
     char line[LINE_SIZE];//for the whole line
-    boolean flag = TRUE;
+    FILE *fp;
+    char* filename="/input.txt";
+    char pathname[26];
+    getcwd(pathname,sizeof(pathname)/sizeof(pathname[0]));
+    strcat(pathname, filename);
     size_t i, j;
     size_t iterate;
     static size_t z = 0;
     static int it = 0;
     j = 0;
-    char *word = (char *) calloc(26, sizeof(char));
-    flag = gets(line); //get a line from the text file
-    if (flag) {
-        for (i = 0; i <=count_chars(line); i++) {
-            if ((line[i] == '\n') || (line[i] == '\t') || (line[i] == ',') || (line[i] == ' ') || (line[i] == '.')) {
-                word[j]='\0';
+    /* opening file for reading */
+    fp = fopen(pathname , "r");
+    if(fp == NULL) {
+        perror("Error opening file");
+        return FALSE;
+    }
+    while( fgets (line, LINE_SIZE, fp)!=NULL ) {
+        //char line[LINE_SIZE];//for the whole line
+        char *word = (char *) calloc(26, sizeof(char));
+        //flag = gets(line); //get a line from the text file
+        //if (flag) {
+        for (i = 0; line[i]; i++) {
+
+            if ( ((line[i] == '\n') || (line[i] == '\t') || (line[i] == ',') || (line[i] == ' ') || (line[i] == '.')) ) {
+                word[j] = '\0';
                 j = 0;
                 //TODO: check duplicates we are not interested in adding similar words
+                if ((strcmp(word, "\0") != 0)) {
                 if (!(is_in(z, word))) {
                     (WORDS) = (char **) realloc(WORDS, (z + 1) * sizeof(String));
                     WORDS[z] = (char *) calloc(strlen(word), sizeof(char));
@@ -215,16 +229,19 @@ boolean get_line(Node* root) {
                 if ((line[i] == ',') && (line[i + 1] == ' ')) {
                     ++i;
                 }
+            }
             } else {
                 word[j++] = line[i];
             }//collecting 1 word at once to go and search for it in the Trie :)
         }
         iterator=z;
     }
-    else {
+
+
         iterator = z;
-        return flag;
-    }
+        fclose(fp);
+        return FALSE;
+
 }
 void free_Trie(Node** n){
     if((*n)==NULL){
