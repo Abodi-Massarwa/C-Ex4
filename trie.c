@@ -43,24 +43,40 @@ size_t char_to_alphabit(char x){
 ////////////////////////////////////////////////
 Node* newnode(Node* x){
     x=(Node*)malloc(sizeof(Node));
+    if(x==NULL){
+            printf("no more memory :(");
+            return NULL;
+        }
     (x)->counter=0;
     return x;
 }
 
 void newnode1(Node** x){
     *x=(Node*)malloc(sizeof(Node));
+    if(*x==NULL){
+            printf("no more memory :(");
+            return;
+        }
     (*x)->is_word=FALSE;
     (*x)->counter=0;
     return;
 }
 void newnode2(Node** x){
     x=(Node**)malloc(sizeof(Node*));
+    if(x==NULL){
+            printf("no more memory :(");
+            return;
+        }
     (*x)->is_word=FALSE;
     (*x)->counter=0;
     return;
 }
 void newtrie(Node** shoresh,Trie** tree){
     *tree=(Trie*)malloc(sizeof(Trie));
+    if(*tree==NULL){
+            printf("no more memory :(");
+            return;
+        }
     (*tree)->root=*shoresh;
     return;
 }
@@ -149,9 +165,14 @@ void get_words(Node** root){
 
     String word;
     word=(char*)calloc(26,sizeof(char));
+    if(word==NULL){
+            printf("no more memory :(");
+            return;
+        }
     printf("please enter the desired word to search for : ");
     gets(word);
     search_count(word,root);
+    free(word);
 
 }
 void erase(char** word,size_t length){
@@ -187,6 +208,7 @@ int count_chars(String word){
  * after it's sorted we print arr[i] && it's occurrence #
  */
 boolean get_line(Node* root) {
+    char *word=NULL;
     char line[LINE_SIZE];//for the whole line
     FILE *fp;
     char* filename="/input.txt";
@@ -205,12 +227,12 @@ boolean get_line(Node* root) {
         return FALSE;
     }
     while( fgets (line, LINE_SIZE, fp)!=NULL ) {
-        //char line[LINE_SIZE];//for the whole line
-        char *word = (char *) calloc(26, sizeof(char));
-        //flag = gets(line); //get a line from the text file
-        //if (flag) {
+        word = (char *) calloc(26, sizeof(char));
+        if(word==NULL){
+            printf("no more memory :(");
+            return FALSE;
+        }
         for (i = 0; line[i]; i++) {
-
             if ( ((line[i] == '\n') || (line[i] == '\t') || (line[i] == ',') || (line[i] == ' ') || (line[i] == '.')) ) {
                 word[j] = '\0';
                 j = 0;
@@ -237,19 +259,20 @@ boolean get_line(Node* root) {
         iterator=z;
     }
 
-
+        
         iterator = z;
         fclose(fp);
+        free(word);
         return FALSE;
 
 }
-void free_Trie(Node** n){
-    if((*n)==NULL){
+void free_Trie(Node* n){
+    if((n)==NULL){
         return;
     }
     for (int i = 0; i <CHARS_SIZE; i++) {
-        free_Trie(&((*n)->children[i]));
-        free(*n);
+        free_Trie(((n)->children[i]));
+        free(n);
     }
 
 }

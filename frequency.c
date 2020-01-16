@@ -17,5 +17,10 @@ int main()
     newtrie(&root,&tree);
     while(get_line(root)!=FALSE){}
     print_words(root,iterator);
+    for (int i = 0; i < iterator; i++) {
+        free(WORDS[i]);
+    }
+    free(WORDS);
+    free_all(root);
     return 0;
 }
