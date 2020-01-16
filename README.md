@@ -11,8 +11,6 @@ after its found the last Node* consists of Integer field called counter we retur
 
 _qsort() && strcmp() functions were also used to sort the words in the global char** variable lexicographically 
 on the other hand lixcographically reverse used the same algorithm but we simple started printing the words from length till i=0._
-
-# End of Summary
 ___
 ## Links
 ---
