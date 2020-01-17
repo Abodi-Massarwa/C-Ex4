@@ -22,6 +22,7 @@ int main()
     }
     free(WORDS);
     free_all(root);
+    free(tree);
     return 0;
 }
 

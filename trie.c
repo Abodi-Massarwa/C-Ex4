@@ -209,7 +209,7 @@ int count_chars(String word){
  * after it's sorted we print arr[i] && it's occurrence #
  */
 boolean get_line(Node* root) {
-    char *word=NULL;
+    char *word=(char *) calloc(26, sizeof(char));
     char line[LINE_SIZE];//for the whole line
     FILE *fp;
     char* filename="/input.txt";
@@ -228,7 +228,7 @@ boolean get_line(Node* root) {
         return FALSE;
     }
     while( fgets (line, LINE_SIZE, fp)!=NULL ) {
-        word = (char *) calloc(26, sizeof(char));
+        //word = (char *) calloc(26, sizeof(char));
         if(word==NULL){
             printf("no more memory :(");
             return FALSE;
@@ -258,6 +258,7 @@ boolean get_line(Node* root) {
             }//collecting 1 word at once to go and search for it in the Trie :)
         }
         iterator=z;
+        
     }
 
         
@@ -319,5 +320,6 @@ void print_words_reverse(Node* root,size_t size1){
         search_count(WORDS[i],root);
         printf("\n");
     }
+    
 }
 
