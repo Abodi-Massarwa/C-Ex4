@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <unistd.h>
+#include <ctype.h>
 #define CHARS_SIZE 26
 #define LINE_SIZE 256
 #define FALSE 0
@@ -254,7 +255,7 @@ boolean get_line(Node* root) {
                 }
             }
             } else {
-                word[j++] = line[i];
+                word[j++] = tolower(line[i]);
             }//collecting 1 word at once to go and search for it in the Trie :)
         }
         iterator=z;

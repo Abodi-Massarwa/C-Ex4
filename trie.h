@@ -11,23 +11,12 @@
 typedef int int_64;
 typedef int_64 boolean;
 typedef char* String;
-struct Node
-{
-    size_t counter;
-    boolean is_word;
-    struct Node* children[CHARS_SIZE];
-};
 /**
  * int out trie node we have 2 fields
  * 1) is_word determines if is word or not
  * 2) array of pointers to other nodes such that arr[index]
  * means node that resemples index in alphabit of 26 letters
  */
-struct Trie
-{
-    struct Node* root;
-
-};
 typedef struct Node Node;
 typedef struct Trie Trie;
 size_t char_to_alphabit(char x);
